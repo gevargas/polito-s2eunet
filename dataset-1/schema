@@ -1,0 +1,2 @@
+ "string", "integer", "float", "boolean", and "timestamp"
+#client_address:string,client_country:string,lon:float,lat:float,client_provider:string,mlabservername:string,connect_time:float,download_speed:float,neubot_version:float,platform:string,remote_address:string,test_name:string,timestamp:timestamp,upload_speed:float,latency:float,uuid:string,asnum:string,region:string,city:string,hour:integer,month:integer,year:integer,weekday:integer,day:integer,filedate:integer

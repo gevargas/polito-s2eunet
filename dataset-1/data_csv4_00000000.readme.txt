@@ -1,0 +1,61 @@
+"#client_address";"client_country";"lon";"lat";"client_provider";"mlabservername";"connect_time";"download_speed";"neubot_version";"platform";"remote_address";"test_name";"timestamp";"upload_speed";"latency";"uuid";"asnum";"region";"city";"hour";"month";"year";"weekday";"day";"filedate"
+
+README
+======
+
+Every row is a measure.
+
+## FILTERING
+
+First of all, I will consider only the most simple test "speedtest". So filter
+where "test_name"="speedtest".
+
+## FEATURES
+
+Interesting features are:
+
+1. download_speed
+
+This is the speed of the connection that has been measured in each single test.
+This is the main information that we want to correlate to other features.
+
+  1.1 latency
+
+  This is the "delay" of the connection, should be higher for 3G than for ADSL
+  or fiber, may be related to the download_speed. 
+
+2. uuid
+
+This is the id of the user, every user has a unique id, so you can tell to which user the measure belongs
+
+3. #client_address
+
+This is the IP address of the user machine that performed the test. It is an
+address that belongs to an Internet Service Provide, in a particular Location
+and with a particular connection (ADSL, 3G, Fiber, etc.)
+
+  3.1 client_provider, asnum
+ 
+  This is the provider the user is paying for the internet connection
+
+  
+  3.2 city, region, client_country, lon, lat
+
+  These are information on the location of the client, with also longitude and latitude
+
+
+4. timestamp, hour, month, year, weekday, day, filedate
+
+These are the information on when the measure has been recorded
+
+
+## CLUSTERING
+
+A. Detect the technology used for the connection to the Internet
+
+At the present moment, Neubot, do not ask the user if he is using ADSL, 3G or
+so on. We may think of extracting this information from the data, e.g., looking
+at the fact that different technologies have different download_speed and
+latency.
+
+B. Detect how speed/latency, provider, location, timestamp/weekday/hour are correlated
