@@ -1,0 +1,77 @@
+\begin{thebibliography}{}
+
+\bibitem[Barhamgi et~al., 2010]{BBM10}
+Barhamgi, M., Benslimane, D., and Medjahed, B. (2010).
+\newblock A query rewriting approach for web service composition.
+\newblock {\em IEEE T. Services Computing}, 3(3):206--222.
+
+\bibitem[Brandic et~al., 2010]{5614035}
+Brandic, I., Emeakaroha, V., Maurer, M., Dustdar, S., Acs, S., Kertesz, A., and
+  Kecskemeti, G. (2010).
+\newblock Laysi: A layered approach for sla-violation propagation in
+  self-manageable cloud infrastructures.
+\newblock In {\em Computer Software and Applications Conference Workshops
+  (COMPSACW), 2010 IEEE 34th Annual}, pages 365--370.
+
+\bibitem[Chauhan et~al., 2011]{6141307}
+Chauhan, T., Chaudhary, S., Kumar, V., and Bhise, M. (2011).
+\newblock Service level agreement parameter matching in cloud computing.
+\newblock In {\em Information and Communication Technologies (WICT), 2011 World
+  Congress on}, pages 564--570.
+
+\bibitem[da~Costa et~al., 2013]{CostaAMR13}
+da~Costa, U.~S., Alves, M. H.~F., Musicante, M.~A., and Robert, S. (2013).
+\newblock Automatic refinement of service compositions.
+\newblock In Daniel, F., Dolog, P., and Li, Q., editors, {\em ICWE}, volume
+  7977 of {\em Lecture Notes in Computer Science}, pages 400--407. Springer.
+
+\bibitem[Dastjerdi et~al., 2012]{Dastjerdi:2012:DOA:2275356.2275360}
+Dastjerdi, A.~V., Tabatabaei, S. G.~H., and Buyya, R. (2012).
+\newblock A dependency-aware ontology-based approach for deploying service
+  level agreement monitoring services in cloud.
+\newblock {\em Softw. Pract. Exper.}, 42(4):501--518.
+
+\bibitem[Emeakaroha et~al., 2010]{5547150}
+Emeakaroha, V., Brandic, I., Maurer, M., and Dustdar, S. (2010).
+\newblock Low level metrics to high level slas - lom2his framework: Bridging
+  the gap between monitored metrics and sla parameters in cloud environments.
+\newblock In {\em High Performance Computing and Simulation (HPCS), 2010
+  International Conference on}, pages 48--54.
+
+\bibitem[Hale and Gamble, 2012]{6274042}
+Hale, M. and Gamble, R. (2012).
+\newblock Secagreement: Advancing security risk calculations in cloud services.
+\newblock In {\em Services (SERVICES), 2012 IEEE Eighth World Congress on},
+  pages 133--140.
+
+\bibitem[Levy, 2000]{Levy2000}
+Levy, A.~Y. (2000).
+\newblock {Logic-Based Techniques in Data Integration}.
+\newblock In Minker, J., editor, {\em Logic-Based Artificial Intelligence},
+  chapter~1, pages 575--595. Kluwer Academic Publishers, Norwell, MA, USA.
+
+\bibitem[Luna~Garcia et~al., 2012]{LunaGarcia:2012:BCS:2381913.2381932}
+Luna~Garcia, J., Langenberg, R., and Suri, N. (2012).
+\newblock Benchmarking cloud security level agreements using quantitative
+  policy trees.
+\newblock In {\em Proceedings of the 2012 ACM Workshop on Cloud computing
+  security workshop}, CCSW '12, pages 103--112, New York, NY, USA. ACM.
+
+\bibitem[Ortiz et~al., 2013]{Ortiz:2013:VPS:2486767.2486772}
+Ortiz, J., de~Almeida, V.~T., and Balazinska, M. (2013).
+\newblock A vision for personalized service level agreements in the cloud.
+\newblock In {\em Proceedings of the Second Workshop on Data Analytics in the
+  Cloud}, DanaC '13, pages 21--25, New York, NY, USA. ACM.
+
+\bibitem[Pottinger and Halevy, 2001]{PH01}
+Pottinger, R. and Halevy, A.~Y. (2001).
+\newblock Minicon: A scalable algorithm for answering queries using views.
+\newblock {\em VLDB J.}, 10(2-3):182--198.
+
+\bibitem[Zhao et~al., 2011]{ZLC11}
+Zhao, W., Liu, C., and Chen, J. (2011).
+\newblock {Automatic composition of information-providing web services based on
+  query rewriting}.
+\newblock {\em Science China Information Sciences}, pages 1--17.
+
+\end{thebibliography}

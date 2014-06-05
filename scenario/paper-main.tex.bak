@@ -1,0 +1,146 @@
+ \documentclass{llncs}
+
+\usepackage{epsfig}
+%\usepackage{subfigure}
+%\usepackage{calc}
+%\usepackage{amssymb}
+%\usepackage{amstext}
+\usepackage{amsmath}
+%%\usepackage{amsthm} --commented by martin 22nov2013.
+%\usepackage{multicol}
+%\usepackage{pslatex}
+%\usepackage{apalike}
+%%\usepackage[small]{caption}
+%
+%\subfigtopskip=0pt
+%\subfigcapskip=0pt
+%\subfigbottomskip=0pt
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Packages not belonging to the original style of the conference %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{listings}
+%\usepackage[thmmarks]{ntheorem}
+\usepackage[thmmarks,amsmath]{ntheorem}
+
+\newcounter{numberInTrivlist}
+
+\newenvironment{numtrivlist}{\begin{list}{\rm \arabic{numberInTrivlist})} 
+                                         {\usecounter{numberInTrivlist}
+                                          \setlength{\leftmargin}{0pt}
+                                          \setlength{\rightmargin}{0pt}
+                                          \setlength{\itemindent}{12pt}
+                                          \setlength{\listparindent}{0pt}}}
+                            {\end{list}}
+                            
+\lstset{numbers=right, numbersep=5pt, numberstyle=\tiny, stepnumber=1,escapechar=\!,columns=fullflexible,
+        morekeywords={procedure,let,for,do,if,then,else,add,choose,end,while,true,false,rise,exception,extend,resume,to}}
+
+\newcommand{\openbox}{\leavevmode
+  \hbox to.77778em{%
+  \hfil\vrule
+  \vbox to.675em{\hrule width.6em\vfil\hrule}%
+  \vrule\hfil}}
+
+\theoremstyle{plain}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\theoremseparator{}
+\theoremindent0cm
+\theoremnumbering{arabic}
+\newtheorem{algo}{Algorithm}
+
+\theoremstyle{plain}
+%\theoremheaderfont{\normalfont\itshape}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\theoremseparator{}
+\theoremindent0cm
+\theoremnumbering{arabic}
+\theoremsymbol{\ensuremath{\openbox}} 
+\newtheorem{examp}{Example}
+
+
+\theoremstyle{plain}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\theoremseparator{.}
+\theoremindent0cm
+\theoremnumbering{arabic}
+\theoremsymbol{\ensuremath{\Box}} 
+\newtheorem{defi}{Definition}
+
+\theoremstyle{plain} 
+\theoremsymbol{\ensuremath{\Box}} 
+\theoremseparator{.} 
+\newtheorem{prop}{Property}
+
+
+
+
+
+
+
+\begin{document}
+
+%\title{Authors' Instructions  \subtitle{Preparation of Camera-Ready Contributions to SCITEPRESS Proceedings} }
+
+\title{Observing and understanding network observations
+       \subtitle{From raw data to knowledge} 
+       }
+
+%\author{\authorname{First Author Name\sup{1}, Second Author Name\sup{1} and Third Author Name\sup{2}}
+%\affiliation{\sup{1}Institute of Problem Solving, XYZ University, My Street, MyTown, MyCountry}
+%\affiliation{\sup{2}Department of Computing, Main University, MySecondTown, MyCountry}
+%\email{\{f\_author, s\_author\}@ips.xyz.edu, t\_author@dc.mu.edu}
+%}
+
+\maketitle
+
+
+\keywords{a, b, c}
+
+\begin{abstract}
+This paper proposes 
+\end{abstract}
+
+
+
+\section{{Introduction}}
+\label{sec:introduction}
+\input{introduction}
+
+\section{{Related Work}}
+\label{sec:relWork}
+\input{relwork}
+
+%\section{{SLA based data integration}}
+%\label{sec:slaDataInteg}
+%\input{slaDataInteg}
+
+\section{{Scenario}}
+\label{sec:scenario}
+\input{useCase}
+
+
+\section{{Conclusions and Future work}}
+\label{sec:conclusions}
+\input{conclusions}
+
+
+%\vfill
+\bibliographystyle{splncs}
+
+\bibliography{example}
+
+
+%\section*{\uppercase{Appendix}}
+
+
+%\vfill
+\end{document}
+

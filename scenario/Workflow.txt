@@ -1,0 +1,43 @@
+SLA-Guided process:
+
+1. Given the query, we need to identify those parameters having aggregation. These parameters will be processed as:
+
+  Q(…, $SUM(x) = K, …) 
+
+  [notice that $SUM(x) = K is an input expression containing a 
+  variable x and identifying the result of the summation with
+  the constant K.]
+
+  [This query does not considers the SLAs of the context…]
+
+  This query will be transformed into:
+
+  (i) Q’(…, x, …) where x is an output parameter and 
+
+  (ii) somewhere there is noted that the sum of all the results 
+       x will be equal to K. (an SLA?)
+
+2. Instantiate Q’ in terms of abstract specifications and add the SLA information. (We statically know how to do this.) We obtain something like:
+
+  Q’(…, x, …) == A(…), B(…),…, z = k1, …
+
+3. Rewrite Q’ in terms of specific (concrete) services. We obtain a list of queries like:
+
+  Q’’(…, x, …) == C(…),… r = k2, …
+
+The SLAs need to be considered to order the queries in this list!
+
+** In this step, we can use Umberto’s algorithm. **
+
+4. Incrementally execute the queries in the list, until the aggregation required is met.
+  [Notice that step 3 can be implemented as an iterator, called by step 4.]
+
+** This step can benefit from Genoveva’s work **
+
+5. Integrate the results and answer to the user.
+
+** This step can benefit from Genoveva’s work **
+
+
+
+ 
