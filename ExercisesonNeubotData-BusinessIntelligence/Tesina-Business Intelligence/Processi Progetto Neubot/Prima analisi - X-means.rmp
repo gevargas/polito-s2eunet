@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process version="5.3.008">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="5.3.008" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <parameter key="parallelize_main_process" value="true"/>
+    <process expanded="true">
+      <operator activated="true" class="read_csv" compatibility="5.3.008" expanded="true" height="60" name="Lettura Dataset" width="90" x="45" y="75">
+        <parameter key="csv_file" value="E:\Spongebob\Spongebob - BI\2013_04_IT.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character_for_quotes" value="\"/>
+        <parameter key="skip_comments" value="true"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="date_format" value=""/>
+        <parameter key="first_row_as_names" value="false"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="SYSTEM"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="windows-1252"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="client_address.false.polynominal.attribute"/>
+          <parameter key="1" value="client_country.false.binominal.attribute"/>
+          <parameter key="2" value="client_provider.false.polynominal.attribute"/>
+          <parameter key="3" value="connect_time.true.real.attribute"/>
+          <parameter key="4" value="download_speed.true.real.attribute"/>
+          <parameter key="5" value="neubot_version.false.polynominal.attribute"/>
+          <parameter key="6" value="platform.false.polynominal.attribute"/>
+          <parameter key="7" value="remote_address.true.binominal.attribute"/>
+          <parameter key="8" value="test_name.true.binominal.attribute"/>
+          <parameter key="9" value="timestamp.true.integer.attribute"/>
+          <parameter key="10" value="upload_speed.true.real.attribute"/>
+          <parameter key="11" value="uuid.false.polynominal.attribute"/>
+          <parameter key="12" value="asnum.false.polynominal.attribute"/>
+          <parameter key="13" value="region.false.polynominal.attribute"/>
+          <parameter key="14" value="city.false.polynominal.attribute"/>
+          <parameter key="15" value="hour.true.integer.attribute"/>
+          <parameter key="16" value="month.false.integer.attribute"/>
+          <parameter key="17" value="year.false.integer.attribute"/>
+          <parameter key="18" value="weekday.false.integer.attribute"/>
+          <parameter key="19" value="monthday.false.integer.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="true"/>
+        <parameter key="datamanagement" value="double_array"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="5.3.008" expanded="true" height="94" name="Multiply" width="90" x="179" y="75"/>
+      <operator activated="true" class="subprocess" compatibility="5.3.008" expanded="true" height="76" name="PreproNotte" width="90" x="313" y="165">
+        <parameter key="parallelize_nested_chain" value="true"/>
+        <process expanded="true">
+          <operator activated="true" class="normalize" compatibility="5.3.008" expanded="true" height="94" name="Normalize" width="90" x="45" y="30">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="|connect_time|download_speed|upload_speed"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="numeric"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="real"/>
+            <parameter key="block_type" value="value_series"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_series_end"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="method" value="Z-transformation"/>
+            <parameter key="min" value="0.0"/>
+            <parameter key="max" value="1.0"/>
+          </operator>
+          <operator activated="true" class="filter_examples" compatibility="5.3.008" expanded="true" height="76" name="Filtro Test Bittorrent (2)" width="90" x="180" y="30">
+            <parameter key="condition_class" value="attribute_value_filter"/>
+            <parameter key="parameter_string" value="test_name=bittorrent"/>
+            <parameter key="invert_filter" value="false"/>
+          </operator>
+          <operator activated="true" class="filter_examples" compatibility="5.3.008" expanded="true" height="76" name="Filtronotte" width="90" x="315" y="30">
+            <parameter key="condition_class" value="attribute_value_filter"/>
+            <parameter key="parameter_string" value="hour&lt;8 || hour&gt;19"/>
+            <parameter key="invert_filter" value="false"/>
+          </operator>
+          <operator activated="true" class="select_attributes" compatibility="5.3.008" expanded="true" height="76" name="Select Attributes (2)" width="90" x="450" y="30">
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="connect_time|download_speed|upload_speed"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+          </operator>
+          <connect from_port="in 1" to_op="Normalize" to_port="example set input"/>
+          <connect from_op="Normalize" from_port="example set output" to_op="Filtro Test Bittorrent (2)" to_port="example set input"/>
+          <connect from_op="Filtro Test Bittorrent (2)" from_port="example set output" to_op="Filtronotte" to_port="example set input"/>
+          <connect from_op="Filtronotte" from_port="example set output" to_op="Select Attributes (2)" to_port="example set input"/>
+          <connect from_op="Select Attributes (2)" from_port="example set output" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="x_means" compatibility="5.3.008" expanded="true" height="76" name="X-Notte" width="90" x="447" y="165">
+        <parameter key="add_cluster_attribute" value="true"/>
+        <parameter key="add_as_label" value="false"/>
+        <parameter key="remove_unlabeled" value="false"/>
+        <parameter key="k_min" value="2"/>
+        <parameter key="k_max" value="200"/>
+        <parameter key="determine_good_start_values" value="false"/>
+        <parameter key="measure_types" value="NumericalMeasures"/>
+        <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+        <parameter key="nominal_measure" value="NominalDistance"/>
+        <parameter key="numerical_measure" value="EuclideanDistance"/>
+        <parameter key="divergence" value="GeneralizedIDivergence"/>
+        <parameter key="kernel_type" value="radial"/>
+        <parameter key="kernel_gamma" value="1.0"/>
+        <parameter key="kernel_sigma1" value="1.0"/>
+        <parameter key="kernel_sigma2" value="0.0"/>
+        <parameter key="kernel_sigma3" value="2.0"/>
+        <parameter key="kernel_degree" value="3.0"/>
+        <parameter key="kernel_shift" value="1.0"/>
+        <parameter key="kernel_a" value="1.0"/>
+        <parameter key="kernel_b" value="0.0"/>
+        <parameter key="clustering_algorithm" value="KMeans"/>
+        <parameter key="max_runs" value="100"/>
+        <parameter key="max_optimization_steps" value="1000"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="subprocess" compatibility="5.3.008" expanded="true" height="130" name="ParaNotte" width="90" x="581" y="165">
+        <parameter key="parallelize_nested_chain" value="true"/>
+        <process expanded="true">
+          <operator activated="true" class="multiply" compatibility="5.3.008" expanded="true" height="94" name="ClusterExample (2)" width="90" x="45" y="210"/>
+          <operator activated="true" class="multiply" compatibility="5.3.008" expanded="true" height="94" name="ClusterModel (2)" width="90" x="45" y="30"/>
+          <operator activated="true" class="subprocess" compatibility="5.3.008" expanded="true" height="112" name="Perf Notte" width="90" x="313" y="210">
+            <parameter key="parallelize_nested_chain" value="true"/>
+            <process expanded="true">
+              <operator activated="true" class="cluster_count_performance" compatibility="5.3.008" expanded="true" height="76" name="Performance (3)" width="90" x="45" y="30"/>
+              <operator activated="true" class="item_distribution_performance" compatibility="5.3.008" expanded="true" height="76" name="GiniNotte" width="90" x="180" y="30">
+                <parameter key="measure" value="GiniCoefficient"/>
+              </operator>
+              <operator activated="true" class="cluster_distance_performance" compatibility="5.3.008" expanded="true" height="94" name="Performance (4)" width="90" x="370" y="39">
+                <parameter key="main_criterion" value="Avg. within centroid distance"/>
+                <parameter key="main_criterion_only" value="false"/>
+                <parameter key="normalize" value="true"/>
+                <parameter key="maximize" value="true"/>
+              </operator>
+              <connect from_port="in 1" to_op="Performance (3)" to_port="cluster model"/>
+              <connect from_port="in 2" to_op="Performance (4)" to_port="example set"/>
+              <connect from_op="Performance (3)" from_port="cluster model" to_op="GiniNotte" to_port="cluster model"/>
+              <connect from_op="Performance (3)" from_port="performance" to_op="GiniNotte" to_port="performance vector"/>
+              <connect from_op="GiniNotte" from_port="cluster model" to_op="Performance (4)" to_port="cluster model"/>
+              <connect from_op="GiniNotte" from_port="performance vector" to_op="Performance (4)" to_port="performance"/>
+              <connect from_op="Performance (4)" from_port="performance" to_port="out 1"/>
+              <connect from_op="Performance (4)" from_port="example set" to_port="out 2"/>
+              <connect from_op="Performance (4)" from_port="cluster model" to_port="out 3"/>
+              <portSpacing port="source_in 1" spacing="0"/>
+              <portSpacing port="source_in 2" spacing="0"/>
+              <portSpacing port="source_in 3" spacing="0"/>
+              <portSpacing port="sink_out 1" spacing="0"/>
+              <portSpacing port="sink_out 2" spacing="0"/>
+              <portSpacing port="sink_out 3" spacing="0"/>
+              <portSpacing port="sink_out 4" spacing="0"/>
+            </process>
+          </operator>
+          <operator activated="true" class="execute_script" compatibility="5.3.008" expanded="true" height="94" name="Script SSE notte" width="90" x="313" y="30">
+            <parameter key="script" value="/**&#10;*&#9;Author: Luigi Grimaudo&#10;*&#9;Version: 1.0.0&#10;*&#9;Date: 11/01/2012&#10;*&#10;*&#9;Description:&#10;*&#9;This script permits to calculate the SSE measure of a given clustering.&#10;*&#10;*&#9;Input:&#10;*&#9;input[0]: the cluster model coming out from the cluster operator&#10;*&#9;input[1]: the example set of the clustering&#10;*&#10;*&#9;Output:&#10;*&#9;The SSE value of the clustering will be displayed in log console.&#10;**/&#10;&#10;import com.rapidminer.operator.clustering.ClusterModel;&#10;import com.rapidminer.operator.clustering.Cluster;&#10;&#10;int DBSCAN = 1;&#10;int KMEANS = 0;&#10;&#10;/** Set the current clustering algorithm **/&#10;int ALGO = KMEANS;&#10;/************* End setting ****************/&#10;&#10;ClusterModel clustering = input[0];&#10;ExampleSet clusteringSet = input[1];&#10;&#10;operator.logNote(&quot;=============== SSE Computation ===============&quot;);&#10;Double sum = new Double(0);&#10;for (int i=ALGO; i &lt; clustering.getNumberOfClusters(); i++) {&#10;&#9;Cluster cluster = clustering.getCluster(i);&#10;&#10;&#9;if (cluster.getNumberOfExamples() == 0) {&#10;&#9;&#9;continue;&#10;&#9;}&#10;&#9;else {&#10;&#9;&#9;Collection&lt;Object&gt; idsList = cluster.getExampleIds();&#10;&#9;&#9;clusteringSet.remapIds();&#10;&#9;&#9;TreeMap&lt;String,Double&gt; centroid = new TreeMap&lt;String, Double&gt;();&#10;&#9;&#9;Attribute[] atts = clusteringSet.getExampleFromId(1).getAttributes().createRegularAttributeArray();&#10;&#9;&#9;for (Attribute att : atts){&#10;&#9;&#9;&#9;String attStr = att.getName();&#10;&#9;&#9;&#9;centroid.put(attStr, 0.0);&#10;&#9;&#9;}&#10;&#9;&#9;&#10;&#9;&#9;for (Object id : idsList) {&#10;&#9;&#9;&#9;Example example = clusteringSet.getExampleFromId((Double) id);&#10;&#9;&#9;&#9;for (Attribute att : atts){&#10;&#9;&#9;&#9;&#9;String attStr = att.getName();&#10;&#9;&#9;&#9;&#9;Double bValue = new Double(example.getValue(example.getAttributes().get(attStr)));&#10;&#9;&#9;&#9;&#9;centroid.put(attStr, centroid.get(attStr) + bValue);&#10;&#9;&#9;&#9;}&#10;&#9;&#9;}&#10;&#10;&#9;&#9;for (Attribute att : atts){&#10;&#9;&#9;&#9;String attStr = att.getName();&#10;&#9;&#9;&#9;centroid.put(attStr, centroid.get(attStr)/idsList.size());&#10;&#9;&#9;}&#10;&#9;&#9;operator.logNote(&quot;Centroid cluster &quot; + i + &quot;: &quot; + centroid);&#10;&#10;&#9;&#9;for (Object id : idsList) {&#10;&#9;&#9;&#9;Example example = clusteringSet.getExampleFromId((Double) id);&#10;&#9;&#9;&#9;distance = new Double(calculateEuclideanDistance(centroid, example));&#10;&#9;&#9;&#9;sum += distance*distance;&#10;&#9;&#9;}&#10;&#9;}&#10;}&#10;operator.logNote(&quot;SSE: &quot; + sum);&#10;operator.logNote(&quot;================== SSE End =================&quot;);&#10;&#10;Double calculateEuclideanDistance(TreeMap a, Example b)&#10;{&#10;&#9;&#9;Attribute[] atts = b.getAttributes().createRegularAttributeArray();&#10;&#9;&#9;Double sum = new Double(0);&#10;&#9;&#9;Double dist = new Double(0);&#10;&#9;&#9;for (Attribute att : atts){&#10;&#9;&#9;&#9;String attStr = att.getName();&#10;&#9;&#9;&#9;Double aValue = a.get(attStr);&#10;&#9;&#9;&#9;Double bValue = new Double(b.getValue(b.getAttributes().get(attStr)));&#10;&#9;&#9;&#9;Double difference = new Double(aValue - bValue);&#10;&#9;&#9;&#9;sum += Math.pow(difference,2);&#10;&#9;&#9;}&#10;&#9;&#9;dist = Math.sqrt(sum);&#10;&#9;&#9;&#10;&#9;&#9;return dist;&#10;}&#10;&#10;&#10;"/>
+            <parameter key="standard_imports" value="true"/>
+          </operator>
+          <operator activated="true" class="log" compatibility="5.3.008" expanded="true" height="76" name="LogNotte" width="90" x="514" y="30">
+            <parameter key="filename" value="F:\LOG_tempi_neubot"/>
+            <list key="log">
+              <parameter key="Tempo X-Notte" value="operator.X-Notte.value.execution-time"/>
+              <parameter key="Tempo preprocessing" value="operator.PreproNotte.value.execution-time"/>
+              <parameter key="Tempo Processo" value="operator.Process.value.execution-time"/>
+            </list>
+            <parameter key="sorting_type" value="none"/>
+            <parameter key="sorting_k" value="100"/>
+            <parameter key="persistent" value="false"/>
+          </operator>
+          <connect from_port="in 1" to_op="ClusterModel (2)" to_port="input"/>
+          <connect from_port="in 2" to_op="ClusterExample (2)" to_port="input"/>
+          <connect from_op="ClusterExample (2)" from_port="output 1" to_op="Script SSE notte" to_port="input 2"/>
+          <connect from_op="ClusterExample (2)" from_port="output 2" to_op="Perf Notte" to_port="in 2"/>
+          <connect from_op="ClusterModel (2)" from_port="output 1" to_op="Script SSE notte" to_port="input 1"/>
+          <connect from_op="ClusterModel (2)" from_port="output 2" to_op="Perf Notte" to_port="in 1"/>
+          <connect from_op="Perf Notte" from_port="out 1" to_port="out 2"/>
+          <connect from_op="Perf Notte" from_port="out 2" to_port="out 3"/>
+          <connect from_op="Perf Notte" from_port="out 3" to_port="out 4"/>
+          <connect from_op="Script SSE notte" from_port="output 1" to_op="LogNotte" to_port="through 1"/>
+          <connect from_op="LogNotte" from_port="through 1" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="source_in 3" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+          <portSpacing port="sink_out 3" spacing="0"/>
+          <portSpacing port="sink_out 4" spacing="0"/>
+          <portSpacing port="sink_out 5" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="subprocess" compatibility="5.3.008" expanded="true" height="76" name="PreproGiorno" width="90" x="313" y="30">
+        <parameter key="parallelize_nested_chain" value="true"/>
+        <process expanded="true">
+          <operator activated="true" class="normalize" compatibility="5.3.008" expanded="true" height="94" name="Normalize (2)" width="90" x="45" y="30">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="|connect_time|download_speed|upload_speed"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="numeric"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="real"/>
+            <parameter key="block_type" value="value_series"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_series_end"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="method" value="Z-transformation"/>
+            <parameter key="min" value="0.0"/>
+            <parameter key="max" value="1.0"/>
+          </operator>
+          <operator activated="true" class="filter_examples" compatibility="5.3.008" expanded="true" height="76" name="Filtro Test Bittorrent (3)" width="90" x="179" y="30">
+            <parameter key="condition_class" value="attribute_value_filter"/>
+            <parameter key="parameter_string" value="test_name=bittorrent"/>
+            <parameter key="invert_filter" value="false"/>
+          </operator>
+          <operator activated="true" class="filter_examples" compatibility="5.3.008" expanded="true" height="76" name="FiltroGiorno" width="90" x="313" y="30">
+            <parameter key="condition_class" value="attribute_value_filter"/>
+            <parameter key="parameter_string" value="hour&gt;7 &amp;&amp; hour&lt;20"/>
+            <parameter key="invert_filter" value="false"/>
+          </operator>
+          <operator activated="true" class="select_attributes" compatibility="5.3.008" expanded="true" height="76" name="Select Attributes" width="90" x="447" y="30">
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="connect_time|download_speed|upload_speed"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+          </operator>
+          <connect from_port="in 1" to_op="Normalize (2)" to_port="example set input"/>
+          <connect from_op="Normalize (2)" from_port="example set output" to_op="Filtro Test Bittorrent (3)" to_port="example set input"/>
+          <connect from_op="Filtro Test Bittorrent (3)" from_port="example set output" to_op="FiltroGiorno" to_port="example set input"/>
+          <connect from_op="FiltroGiorno" from_port="example set output" to_op="Select Attributes" to_port="example set input"/>
+          <connect from_op="Select Attributes" from_port="example set output" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="x_means" compatibility="5.3.008" expanded="true" height="76" name="X-Giorno" width="90" x="447" y="30">
+        <parameter key="add_cluster_attribute" value="true"/>
+        <parameter key="add_as_label" value="false"/>
+        <parameter key="remove_unlabeled" value="false"/>
+        <parameter key="k_min" value="2"/>
+        <parameter key="k_max" value="200"/>
+        <parameter key="determine_good_start_values" value="false"/>
+        <parameter key="measure_types" value="NumericalMeasures"/>
+        <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+        <parameter key="nominal_measure" value="NominalDistance"/>
+        <parameter key="numerical_measure" value="EuclideanDistance"/>
+        <parameter key="divergence" value="GeneralizedIDivergence"/>
+        <parameter key="kernel_type" value="radial"/>
+        <parameter key="kernel_gamma" value="1.0"/>
+        <parameter key="kernel_sigma1" value="1.0"/>
+        <parameter key="kernel_sigma2" value="0.0"/>
+        <parameter key="kernel_sigma3" value="2.0"/>
+        <parameter key="kernel_degree" value="3.0"/>
+        <parameter key="kernel_shift" value="1.0"/>
+        <parameter key="kernel_a" value="1.0"/>
+        <parameter key="kernel_b" value="0.0"/>
+        <parameter key="clustering_algorithm" value="KMeans"/>
+        <parameter key="max_runs" value="100"/>
+        <parameter key="max_optimization_steps" value="1000"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="subprocess" compatibility="5.3.008" expanded="true" height="130" name="ParaGiorno" width="90" x="581" y="30">
+        <parameter key="parallelize_nested_chain" value="true"/>
+        <process expanded="true">
+          <operator activated="true" class="multiply" compatibility="5.3.008" expanded="true" height="94" name="ClusterExample" width="90" x="45" y="210"/>
+          <operator activated="true" class="multiply" compatibility="5.3.008" expanded="true" height="94" name="ClusterModel" width="90" x="45" y="30"/>
+          <operator activated="true" class="execute_script" compatibility="5.3.008" expanded="true" height="94" name="Script SSE Giorno" width="90" x="313" y="30">
+            <parameter key="script" value="/**&#10;*&#9;Author: Luigi Grimaudo&#10;*&#9;Version: 1.0.0&#10;*&#9;Date: 11/01/2012&#10;*&#10;*&#9;Description:&#10;*&#9;This script permits to calculate the SSE measure of a given clustering.&#10;*&#10;*&#9;Input:&#10;*&#9;input[0]: the cluster model coming out from the cluster operator&#10;*&#9;input[1]: the example set of the clustering&#10;*&#10;*&#9;Output:&#10;*&#9;The SSE value of the clustering will be displayed in log console.&#10;**/&#10;&#10;import com.rapidminer.operator.clustering.ClusterModel;&#10;import com.rapidminer.operator.clustering.Cluster;&#10;&#10;int DBSCAN = 1;&#10;int KMEANS = 0;&#10;&#10;/** Set the current clustering algorithm **/&#10;int ALGO = KMEANS;&#10;/************* End setting ****************/&#10;&#10;ClusterModel clustering = input[0];&#10;ExampleSet clusteringSet = input[1];&#10;&#10;operator.logNote(&quot;=============== SSE Computation ===============&quot;);&#10;Double sum = new Double(0);&#10;for (int i=ALGO; i &lt; clustering.getNumberOfClusters(); i++) {&#10;&#9;Cluster cluster = clustering.getCluster(i);&#10;&#10;&#9;if (cluster.getNumberOfExamples() == 0) {&#10;&#9;&#9;continue;&#10;&#9;}&#10;&#9;else {&#10;&#9;&#9;Collection&lt;Object&gt; idsList = cluster.getExampleIds();&#10;&#9;&#9;clusteringSet.remapIds();&#10;&#9;&#9;TreeMap&lt;String,Double&gt; centroid = new TreeMap&lt;String, Double&gt;();&#10;&#9;&#9;Attribute[] atts = clusteringSet.getExampleFromId(1).getAttributes().createRegularAttributeArray();&#10;&#9;&#9;for (Attribute att : atts){&#10;&#9;&#9;&#9;String attStr = att.getName();&#10;&#9;&#9;&#9;centroid.put(attStr, 0.0);&#10;&#9;&#9;}&#10;&#9;&#9;&#10;&#9;&#9;for (Object id : idsList) {&#10;&#9;&#9;&#9;Example example = clusteringSet.getExampleFromId((Double) id);&#10;&#9;&#9;&#9;for (Attribute att : atts){&#10;&#9;&#9;&#9;&#9;String attStr = att.getName();&#10;&#9;&#9;&#9;&#9;Double bValue = new Double(example.getValue(example.getAttributes().get(attStr)));&#10;&#9;&#9;&#9;&#9;centroid.put(attStr, centroid.get(attStr) + bValue);&#10;&#9;&#9;&#9;}&#10;&#9;&#9;}&#10;&#10;&#9;&#9;for (Attribute att : atts){&#10;&#9;&#9;&#9;String attStr = att.getName();&#10;&#9;&#9;&#9;centroid.put(attStr, centroid.get(attStr)/idsList.size());&#10;&#9;&#9;}&#10;&#9;&#9;operator.logNote(&quot;Centroid cluster &quot; + i + &quot;: &quot; + centroid);&#10;&#10;&#9;&#9;for (Object id : idsList) {&#10;&#9;&#9;&#9;Example example = clusteringSet.getExampleFromId((Double) id);&#10;&#9;&#9;&#9;distance = new Double(calculateEuclideanDistance(centroid, example));&#10;&#9;&#9;&#9;sum += distance*distance;&#10;&#9;&#9;}&#10;&#9;}&#10;}&#10;operator.logNote(&quot;SSE: &quot; + sum);&#10;operator.logNote(&quot;================== SSE End =================&quot;);&#10;&#10;Double calculateEuclideanDistance(TreeMap a, Example b)&#10;{&#10;&#9;&#9;Attribute[] atts = b.getAttributes().createRegularAttributeArray();&#10;&#9;&#9;Double sum = new Double(0);&#10;&#9;&#9;Double dist = new Double(0);&#10;&#9;&#9;for (Attribute att : atts){&#10;&#9;&#9;&#9;String attStr = att.getName();&#10;&#9;&#9;&#9;Double aValue = a.get(attStr);&#10;&#9;&#9;&#9;Double bValue = new Double(b.getValue(b.getAttributes().get(attStr)));&#10;&#9;&#9;&#9;Double difference = new Double(aValue - bValue);&#10;&#9;&#9;&#9;sum += Math.pow(difference,2);&#10;&#9;&#9;}&#10;&#9;&#9;dist = Math.sqrt(sum);&#10;&#9;&#9;&#10;&#9;&#9;return dist;&#10;}&#10;&#10;&#10;"/>
+            <parameter key="standard_imports" value="true"/>
+          </operator>
+          <operator activated="true" class="subprocess" compatibility="5.3.008" expanded="true" height="112" name="Perf Giorno" width="90" x="313" y="210">
+            <parameter key="parallelize_nested_chain" value="true"/>
+            <process expanded="true">
+              <operator activated="true" class="cluster_count_performance" compatibility="5.3.008" expanded="true" height="76" name="Performance" width="90" x="179" y="165"/>
+              <operator activated="true" class="item_distribution_performance" compatibility="5.3.008" expanded="true" height="76" name="GiniGiorno" width="90" x="380" y="120">
+                <parameter key="measure" value="GiniCoefficient"/>
+              </operator>
+              <operator activated="true" class="cluster_distance_performance" compatibility="5.3.008" expanded="true" height="94" name="Performance (2)" width="90" x="581" y="30">
+                <parameter key="main_criterion" value="Avg. within centroid distance"/>
+                <parameter key="main_criterion_only" value="false"/>
+                <parameter key="normalize" value="true"/>
+                <parameter key="maximize" value="true"/>
+              </operator>
+              <connect from_port="in 1" to_op="Performance" to_port="cluster model"/>
+              <connect from_port="in 2" to_op="Performance (2)" to_port="example set"/>
+              <connect from_op="Performance" from_port="cluster model" to_op="GiniGiorno" to_port="cluster model"/>
+              <connect from_op="Performance" from_port="performance" to_op="GiniGiorno" to_port="performance vector"/>
+              <connect from_op="GiniGiorno" from_port="cluster model" to_op="Performance (2)" to_port="cluster model"/>
+              <connect from_op="GiniGiorno" from_port="performance vector" to_op="Performance (2)" to_port="performance"/>
+              <connect from_op="Performance (2)" from_port="performance" to_port="out 1"/>
+              <connect from_op="Performance (2)" from_port="example set" to_port="out 2"/>
+              <connect from_op="Performance (2)" from_port="cluster model" to_port="out 3"/>
+              <portSpacing port="source_in 1" spacing="0"/>
+              <portSpacing port="source_in 2" spacing="0"/>
+              <portSpacing port="source_in 3" spacing="0"/>
+              <portSpacing port="sink_out 1" spacing="0"/>
+              <portSpacing port="sink_out 2" spacing="0"/>
+              <portSpacing port="sink_out 3" spacing="0"/>
+              <portSpacing port="sink_out 4" spacing="0"/>
+            </process>
+          </operator>
+          <operator activated="true" class="log" compatibility="5.3.008" expanded="true" height="76" name="LogGiorno" width="90" x="447" y="30">
+            <parameter key="filename" value="F:\LOG_tempi_neubot"/>
+            <list key="log">
+              <parameter key="Tempo Processo" value="operator.Process.value.execution-time"/>
+              <parameter key="Tempo preprocessing" value="operator.PreproGiorno.value.execution-time"/>
+              <parameter key="Tempo X-Giorno" value="operator.X-Giorno.value.execution-time"/>
+            </list>
+            <parameter key="sorting_type" value="none"/>
+            <parameter key="sorting_k" value="100"/>
+            <parameter key="persistent" value="false"/>
+          </operator>
+          <connect from_port="in 1" to_op="ClusterModel" to_port="input"/>
+          <connect from_port="in 2" to_op="ClusterExample" to_port="input"/>
+          <connect from_op="ClusterExample" from_port="output 1" to_op="Script SSE Giorno" to_port="input 2"/>
+          <connect from_op="ClusterExample" from_port="output 2" to_op="Perf Giorno" to_port="in 2"/>
+          <connect from_op="ClusterModel" from_port="output 1" to_op="Script SSE Giorno" to_port="input 1"/>
+          <connect from_op="ClusterModel" from_port="output 2" to_op="Perf Giorno" to_port="in 1"/>
+          <connect from_op="Script SSE Giorno" from_port="output 1" to_op="LogGiorno" to_port="through 1"/>
+          <connect from_op="Perf Giorno" from_port="out 1" to_port="out 2"/>
+          <connect from_op="Perf Giorno" from_port="out 2" to_port="out 3"/>
+          <connect from_op="Perf Giorno" from_port="out 3" to_port="out 4"/>
+          <connect from_op="LogGiorno" from_port="through 1" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="source_in 3" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+          <portSpacing port="sink_out 3" spacing="0"/>
+          <portSpacing port="sink_out 4" spacing="0"/>
+          <portSpacing port="sink_out 5" spacing="0"/>
+        </process>
+      </operator>
+      <connect from_op="Lettura Dataset" from_port="output" to_op="Multiply" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="PreproGiorno" to_port="in 1"/>
+      <connect from_op="Multiply" from_port="output 2" to_op="PreproNotte" to_port="in 1"/>
+      <connect from_op="PreproNotte" from_port="out 1" to_op="X-Notte" to_port="example set"/>
+      <connect from_op="X-Notte" from_port="cluster model" to_op="ParaNotte" to_port="in 1"/>
+      <connect from_op="X-Notte" from_port="clustered set" to_op="ParaNotte" to_port="in 2"/>
+      <connect from_op="ParaNotte" from_port="out 1" to_port="result 5"/>
+      <connect from_op="ParaNotte" from_port="out 2" to_port="result 6"/>
+      <connect from_op="ParaNotte" from_port="out 3" to_port="result 7"/>
+      <connect from_op="ParaNotte" from_port="out 4" to_port="result 8"/>
+      <connect from_op="PreproGiorno" from_port="out 1" to_op="X-Giorno" to_port="example set"/>
+      <connect from_op="X-Giorno" from_port="cluster model" to_op="ParaGiorno" to_port="in 1"/>
+      <connect from_op="X-Giorno" from_port="clustered set" to_op="ParaGiorno" to_port="in 2"/>
+      <connect from_op="ParaGiorno" from_port="out 1" to_port="result 1"/>
+      <connect from_op="ParaGiorno" from_port="out 2" to_port="result 2"/>
+      <connect from_op="ParaGiorno" from_port="out 3" to_port="result 3"/>
+      <connect from_op="ParaGiorno" from_port="out 4" to_port="result 4"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <portSpacing port="sink_result 4" spacing="0"/>
+      <portSpacing port="sink_result 5" spacing="0"/>
+      <portSpacing port="sink_result 6" spacing="0"/>
+      <portSpacing port="sink_result 7" spacing="0"/>
+      <portSpacing port="sink_result 8" spacing="0"/>
+      <portSpacing port="sink_result 9" spacing="0"/>
+    </process>
+  </operator>
+</process>
